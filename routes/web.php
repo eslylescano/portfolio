@@ -11,8 +11,8 @@
 |
 */
 
-Route::view('/', 'index');
-Route::view('/admin', 'admin');
+Route::view('/', 'frontend.index');
+Route::view('/admin', 'backend.index');
 
 Auth::routes();
 
