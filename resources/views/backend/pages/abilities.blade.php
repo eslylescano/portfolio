@@ -1,5 +1,6 @@
-                  <div id="abilities" class="page">
-                      
+                 <!-- <div id="abilities" class="page">-->
+                @extends('layouts.backend.app')
+                 @section('content') 
                       <h1 class="page-header remove-margin">
                           <a class="btn btn-primary pull-right" href="#">Agregar</a>
                           Habilidades obtenidas
@@ -39,4 +40,5 @@
                               </tr>
                           </tbody>
                       </table>
-                  </div>
+                      @endsection
+                  <!--</div>-->

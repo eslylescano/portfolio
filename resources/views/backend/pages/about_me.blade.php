@@ -1,5 +1,6 @@
-                  <div id="me" class="page">
-                      
+            <!--      <div id="about_me" class="page">-->
+                 @extends('layouts.backend.app')
+                 @section('content')
                       <h1 class="page-header">Acerca de mí</h1>
                       
                         <div>
@@ -87,4 +88,5 @@
                       <div class="text-right well well-sm">
                           <button class="btn btn-primary">Guardar</button>
                       </div>
-                  </div>
+                <!--  </div> -->
+                @endsection

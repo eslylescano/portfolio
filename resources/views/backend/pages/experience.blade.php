@@ -1,5 +1,6 @@
-                  <div id="experience" class="page">
-                      
+                  <!--<div id="experience" class="page">-->
+                 @extends('layouts.backend.app')
+                 @section('content') 
                       <h1 class="page-header remove-margin">
                           <a class="btn btn-primary pull-right" href="#">Agregar</a>
                           Trabajos realizados
@@ -33,4 +34,5 @@
                               </tr>
                           </tbody>
                       </table>
-                  </div>
+                      @endsection
+                 <!-- </div>-->

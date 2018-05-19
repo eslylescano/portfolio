@@ -1,5 +1,6 @@
-                  <div id="testimonies" class="page">
-                      
+                  <!--<div id="testimonies" class="page">-->
+                 @extends('layouts.backend.app')
+                 @section('content')                      
                       <h1 class="page-header remove-margin">
                           Testimonios
                       </h1>
@@ -50,4 +51,5 @@
                               </tr>
                           </tbody>
                       </table>
-                  </div>
+                      @endsection
+                  <!--</div>-->

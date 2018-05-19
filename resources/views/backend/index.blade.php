@@ -4,7 +4,7 @@
       <div class="container">
           <div class="row">
               <div class="col-xs-12"> 
-                @include('backend.pages.me')
+                @include('backend.pages.about_me')
                 @include('backend.pages.experience')
                 @include('backend.pages.studies')
                 @include('backend.pages.abilities')

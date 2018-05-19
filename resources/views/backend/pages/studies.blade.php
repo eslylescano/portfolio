@@ -1,5 +1,6 @@
-                  <div id="studies" class="page">
-                      
+                 <!-- <div id="studies" class="page">-->
+                @extends('layouts.backend.app')
+                 @section('content') 
                       <h1 class="page-header remove-margin">
                           <a class="btn btn-primary pull-right" href="#">Agregar</a>
                           Estudios realizados
@@ -33,4 +34,5 @@
                               </tr>
                           </tbody>
                       </table>
-                  </div>
+                      @endsection
+                  <!--</div>-->

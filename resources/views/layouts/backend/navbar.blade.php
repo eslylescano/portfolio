@@ -17,19 +17,20 @@
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav">
                 <li >
-                    <a href="#me">Acerca de mí</a>
+                    <!--<a href="#about_me">Acerca de mí</a>-->
+                    <a href="{{route('backend.pages.about_me')}}">Acerca de mí</a>
                 </li>
                 <li>
-                    <a href="#experience">Trabajos</a>
+                    <a href="{{route('backend.pages.experience')}}">Trabajos</a>
                 </li>
                 <li>
-                    <a href="#studies">Estudios</a>
+                    <a href="{{route('backend.pages.studies')}}">Estudios</a>
                 </li>
                 <li>
-                    <a href="#abilities">Habilidades</a>
+                    <a href="{{route('backend.pages.abilities')}}">Habilidades</a>
                 </li>
                 <li>
-                    <a href="#testimonies">Testimonios</a>
+                    <a href="{{route('backend.pages.testimonies')}}">Testimonios</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
