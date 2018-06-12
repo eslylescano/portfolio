@@ -12,14 +12,19 @@
 */
 
 Route::view('/', 'frontend.index');
-//Route::view('/admin', 'backend.index');
+Route::view('/admin', 'backend.index');
+Route::group(['middleware'=>'auth'],function(){
 Route::get('/admin','BackEndController@index');
 Route::get('/admin/about_me','BackEndController@about_me')->name('backend.pages.about_me');
 Route::get('/admin/abilities','BackEndController@abilities')->name('backend.pages.abilities');
 Route::get('/admin/experience','BackEndController@experience')->name('backend.pages.experience');
 Route::get('/admin/studies','BackEndController@studies')->name('backend.pages.studies');
 Route::get('/admin/testimonies','BackEndController@testimonies')->name('backend.pages.testimonies');
-
+});
 Auth::routes();
+Route::group(['prefix' => 'admin'], function() {
+    Route::auth();
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/welcome', 'welcome');

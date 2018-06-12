@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class BackEndController extends Controller
 {
@@ -15,7 +17,11 @@ class BackEndController extends Controller
 
     public function about_me()
     {
-        return view('backend.pages.about_me');
+        
+        $user = User::find(Auth::id());
+
+        
+        return view('backend.pages.about_me')->with('user',$user);
     }
 
     public function abilities()

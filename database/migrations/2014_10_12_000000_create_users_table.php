@@ -20,15 +20,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('address');//new field
-            $table->string('city');//new field
-            $table->string('country_id');//new field
+
             $table->string('phone');//new field
             $table->string('facebook');//new field
             $table->string('twitter');//new field
             $table->string('youtube');//new field
-            $table->string('photo');//new field
+            $table->string('city');//new field
+            /*
+            $table->string('country_id');//new field
+            $table->string('photo');//new field*/
             $table->rememberToken();
             $table->timestamps();
+            
         });
     }
 

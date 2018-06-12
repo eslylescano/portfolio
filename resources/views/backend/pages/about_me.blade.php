@@ -1,57 +1,60 @@
             <!--      <div id="about_me" class="page">-->
                  @extends('layouts.backend.app')
                  @section('content')
-                      <h1 class="page-header">Acerca de mí</h1>
+                      <h1 class="page-header">About me</h1>
                       
                         <div>
 
                           <!-- Nav tabs -->
                           <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Información</a></li>
-                            <li role="presentation"><a href="#ubicacion" aria-controls="ubicacion" role="tab" data-toggle="tab">Ubicación</a></li>
+                            <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Information</a></li>
+                            <li role="presentation"><a href="#location" aria-controls="location" role="tab" data-toggle="tab">Location</a></li>
                             <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social</a></li>
                           </ul>
 
+                        {!! Form::open(['action'=>'BackEndController@about_me','method'=>'POST'])!!}
                           <!-- Tab panes -->
                           <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="info">
                               <div class="form-group">
-                                  <label>Nombre</label>
-                                  <input type="text" name="Nombre" class="form-control" placeholder="Ingrese su nombre" />
+                                  <label>Name</label>
+                                 {{Form::text('name',$user->name,['class'=>"form-control", 'placeholder'=>"Place your name"])}}
                               </div>
                               <div class="form-group">
-                                  <label>Apellido</label>
-                                  <input type="text" name="Apellido" class="form-control" placeholder="Ingrese su apellido" />
+                                  <label>Surname</label>
+                                  {{Form::text('surname',$user->surname,['class'=>"form-control", 'placeholder'=>"Place your surname"])}}
                               </div>
                               <div class="form-group">
                                   <label>E-mail</label>
-                                  <input type="text" name="Email" class="form-control" placeholder="Ingrese su correo" />
+                                  {{Form::text('email',$user->email,['class'=>"form-control", 'placeholder'=>"Place your E-mail"])}}
                               </div>
                               <div class="form-group">
-                                  <label>Teléfono</label>
-                                  <input type="text" name="Ciudad" class="form-control" placeholder="Ingrese su teléfono" />
+                                  <label>Phone</label>
+                                  {{Form::text('phone',$user->phone,['class'=>"form-control", 'placeholder'=>"Place your phone"])}}
                               </div>
                               <div class="form-group">
-                                  <label>Foto de perfil</label>
+                                  <label>Profile picture</label>
                                   <input type="file" name="Imagen" />
                               </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="ubicacion">
+
+                            <div role="tabpanel" class="tab-pane" id="location">
                               <div class="form-group">
-                                  <label>País</label>
+                                  <label>Country</label>
                                   <select class="form-control">
-                                      <option value="">Seleccione un país</option>
+                                      <option value="">Select a country</option>
                                   </select>
                               </div>
                               <div class="form-group">
-                                  <label>Ciudad</label>
-                                  <input type="text" name="Ciudad" class="form-control" placeholder="Ingrese su ciudad" />
+                                  <label>City</label>
+                                  {{Form::text('city',$user->city,['class'=>"form-control", 'placeholder'=>"Place your city"])}}
                               </div>
                               <div class="form-group">
-                                  <label>Dirección</label>
-                                  <textarea name="Direccion" class="form-control" placeholder="Ingrese su dirección"></textarea>
+                                  <label>Address</label>
+                                  {{Form::textarea('address',$user->address,['class'=>"form-control", 'placeholder'=>"Place your address"])}}
                               </div>
                             </div>
+
                             <div role="tabpanel" class="tab-pane" id="social">
                               <div class="form-group">
                                   <label>Facebook</label>
@@ -59,7 +62,7 @@
                                       <span class="input-group-addon">
                                           <i class="fa fa-facebook"></i>
                                       </span>
-                                      <input type="text" name="Ciudad" class="form-control" placeholder="Ingrese su Facebook" />
+                                      {{Form::text('facebokk',$user->facebook,['class'=>"form-control", 'placeholder'=>"Place your facebook"])}}
                                   </div>
                               </div>
                               <div class="form-group">
@@ -68,7 +71,7 @@
                                       <span class="input-group-addon">
                                           <i class="fa fa-twitter"></i>
                                       </span>
-                                      <input type="text" name="Ciudad" class="form-control" placeholder="Ingrese su Twitter" />
+                                      {{Form::text('twitter',$user->twitter,['class'=>"form-control", 'placeholder'=>"Place your twitter"])}}
                                   </div>
                               </div>
                               <div class="form-group">
@@ -77,7 +80,7 @@
                                       <span class="input-group-addon">
                                           <i class="fa fa-youtube"></i>
                                       </span>
-                                      <input type="text" name="Ciudad" class="form-control" placeholder="Ingrese su YouTube" />
+                                      {{Form::text('youtube',$user->youtube,['class'=>"form-control", 'placeholder'=>"Place your youtube"])}}
                                   </div>
                               </div>
                             </div>
@@ -86,7 +89,10 @@
                         </div>
                       
                       <div class="text-right well well-sm">
-                          <button class="btn btn-primary">Guardar</button>
+                          <button type="submit" class="btn btn-primary">Save</button>
                       </div>
+
+                      {!!Form::close()!!}
+
                 <!--  </div> -->
                 @endsection

@@ -61,9 +61,18 @@
                             </div>
                         </div>
 
+                        <input name="surname" type="hidden" value="surname">
+                        <input name="address" type="hidden" value="address">
+                        <input name="phone" type="hidden" value="phone">
+                        <input name="facebook" type="hidden" value="facebook">
+                        <input name="twitter" type="hidden" value="twitter">
+                        <input name="youtube" type="hidden" value="youtube">
+                        <input name="city" type="hidden" value="city">
+                        
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" classs="btn btn-primary">
                                     Register
                                 </button>
                             </div>
