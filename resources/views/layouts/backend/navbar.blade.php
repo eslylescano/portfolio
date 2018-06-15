@@ -18,19 +18,19 @@
             <ul class="nav navbar-nav">
                 <li >
                     <!--<a href="#about_me">Acerca de mí</a>-->
-                    <a href="{{route('backend.pages.about_me')}}">Acerca de mí</a>
+                    <a href="{{ URL::to('backend/user') }}">Acerca de mí</a>
                 </li>
                 <li>
-                    <a href="{{route('backend.pages.experience')}}">Trabajos</a>
+                    <a href="{{ URL::to('backend/jobs') }}">Trabajos</a>
                 </li>
                 <li>
-                    <a href="{{route('backend.pages.studies')}}">Estudios</a>
+                    <a href="{{ URL::to('backend/studies') }}">Estudios</a>
                 </li>
                 <li>
-                    <a href="{{route('backend.pages.abilities')}}">Habilidades</a>
+                    <a href="{{ URL::to('backend/abilities') }}">Habilidades</a>
                 </li>
                 <li>
-                    <a href="{{route('backend.pages.testimonies')}}">Testimonios</a>
+                    <a href="{{ URL::to('backend/testimonies') }}">Testimonios</a>
                 </li>
             </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -39,8 +39,12 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                         
                             <li class="dropdown">
+                               
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    <img id="user-pic" src="uploads/yo.jpg" />
+                                    <b>Hi</b>, 
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

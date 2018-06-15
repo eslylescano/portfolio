@@ -12,7 +12,7 @@
                             <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social</a></li>
                           </ul>
 
-                        {!! Form::open(['action'=>'BackEndController@about_me','method'=>'POST'])!!}
+                        {!! Form::open(['action'=>['UserController@update',$user->id],'method'=>'POST'])!!}
                           <!-- Tab panes -->
                           <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="info">
@@ -43,6 +43,9 @@
                                   <label>Country</label>
                                   <select class="form-control">
                                       <option value="">Select a country</option>
+                                      @foreach($countries as $country)
+                                      <option value="{{$country->country_name}}">{{$country->country_name}}</option>
+                                      @endforeach
                                   </select>
                               </div>
                               <div class="form-group">

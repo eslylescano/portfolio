@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Country;
 
 class BackEndController extends Controller
 {
@@ -19,9 +20,17 @@ class BackEndController extends Controller
     {
         
         $user = User::find(Auth::id());
+        $countries = Country::all();
 
         
-        return view('backend.pages.about_me')->with('user',$user);
+        //return view('backend.pages.about_me')->with('user',$user);
+        return view('backend.pages.about_me',compact('user','countries'));
+    }
+
+    public function about_me_update(Request $request,$id)
+    {
+
+
     }
 
     public function abilities()

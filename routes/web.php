@@ -12,19 +12,29 @@
 */
 
 Route::view('/', 'frontend.index');
-Route::view('/admin', 'backend.index');
+Route::view('/backend', 'backend.index');
 Route::group(['middleware'=>'auth'],function(){
-Route::get('/admin','BackEndController@index');
-Route::get('/admin/about_me','BackEndController@about_me')->name('backend.pages.about_me');
-Route::get('/admin/abilities','BackEndController@abilities')->name('backend.pages.abilities');
-Route::get('/admin/experience','BackEndController@experience')->name('backend.pages.experience');
-Route::get('/admin/studies','BackEndController@studies')->name('backend.pages.studies');
-Route::get('/admin/testimonies','BackEndController@testimonies')->name('backend.pages.testimonies');
+Route::get('/backend','BackEndController@index');
+Route::get('/backend/abilities','BackEndController@abilities')->name('backend.pages.abilities');
+Route::get('/backend/experience','BackEndController@experience')->name('backend.pages.experience');
+Route::get('/backend/studies','BackEndController@studies')->name('backend.pages.studies');
+Route::get('/backend/testimonies','BackEndController@testimonies')->name('backend.pages.testimonies');
 });
 Auth::routes();
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'backend'], function() {
     Route::auth();
+    Route::resource('user','UserController');
+    Route::resource('jobs','JobsController');
+    Route::resource('studies','StudiesController');
+    Route::resource('abilities','AbilitiesController');
+    Route::resource('testimonies','TestimoniesController');
 });
 
+/*
+Route::name('backend.')->group(function () {
+    Route::auth();
+    Route::resource('user','UserController');
+});
+*/
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/welcome', 'welcome');
