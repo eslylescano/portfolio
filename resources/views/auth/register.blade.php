@@ -68,6 +68,8 @@
                         <input name="twitter" type="hidden" value="twitter">
                         <input name="youtube" type="hidden" value="youtube">
                         <input name="city" type="hidden" value="city">
+                        <input name="country_id" type="hidden" value=0>
+                        <input name="photo" type="hidden" value='noimage.jpg'>
                         
 
                         <div class="form-group">

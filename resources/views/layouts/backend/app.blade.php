@@ -16,6 +16,7 @@
 
 <body>
     <div class="container">
+    @include('layouts.backend.messages')
     @yield('content')
         
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

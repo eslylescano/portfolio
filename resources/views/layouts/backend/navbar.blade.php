@@ -18,19 +18,19 @@
             <ul class="nav navbar-nav">
                 <li >
                     <!--<a href="#about_me">Acerca de mí</a>-->
-                    <a href="{{ URL::to('backend/user') }}">Acerca de mí</a>
+                    <a href="{{ URL::to('backend/user') }}">About me</a>
                 </li>
                 <li>
-                    <a href="{{ URL::to('backend/jobs') }}">Trabajos</a>
+                    <a href="{{ URL::to('backend/jobs') }}">Jobs</a>
                 </li>
                 <li>
-                    <a href="{{ URL::to('backend/studies') }}">Estudios</a>
+                    <a href="{{ URL::to('backend/studies') }}">Studies</a>
                 </li>
                 <li>
-                    <a href="{{ URL::to('backend/abilities') }}">Habilidades</a>
+                    <a href="{{ URL::to('backend/abilities') }}">Abilities</a>
                 </li>
                 <li>
-                    <a href="{{ URL::to('backend/testimonies') }}">Testimonios</a>
+                    <a href="{{ URL::to('backend/testimonies') }}">Testimonies</a>
                 </li>
             </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -43,7 +43,7 @@
                             <li class="dropdown">
                                
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    <img id="user-pic" src="uploads/yo.jpg" />
+                                    <img id="user-pic" src="{{asset('storage/photos/'.Auth::user()->photo)}}" />
                                     <b>Hi</b>, 
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>

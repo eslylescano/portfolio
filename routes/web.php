@@ -13,14 +13,8 @@
 
 Route::view('/', 'frontend.index');
 Route::view('/backend', 'backend.index');
+
 Route::group(['middleware'=>'auth'],function(){
-Route::get('/backend','BackEndController@index');
-Route::get('/backend/abilities','BackEndController@abilities')->name('backend.pages.abilities');
-Route::get('/backend/experience','BackEndController@experience')->name('backend.pages.experience');
-Route::get('/backend/studies','BackEndController@studies')->name('backend.pages.studies');
-Route::get('/backend/testimonies','BackEndController@testimonies')->name('backend.pages.testimonies');
-});
-Auth::routes();
 Route::group(['prefix' => 'backend'], function() {
     Route::auth();
     Route::resource('user','UserController');
@@ -29,6 +23,9 @@ Route::group(['prefix' => 'backend'], function() {
     Route::resource('abilities','AbilitiesController');
     Route::resource('testimonies','TestimoniesController');
 });
+});
+Auth::routes();
+
 
 /*
 Route::name('backend.')->group(function () {

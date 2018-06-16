@@ -26,9 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('twitter');//new field
             $table->string('youtube');//new field
             $table->string('city');//new field
-            /*
-            $table->string('country_id');//new field
-            $table->string('photo');//new field*/
+            $table->integer('country_id');//new field
+            $table->string('photo');//new field
             $table->rememberToken();
             $table->timestamps();
             

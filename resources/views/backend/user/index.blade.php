@@ -12,7 +12,7 @@
                             <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social</a></li>
                           </ul>
 
-                        {!! Form::open(['action'=>['UserController@update',$user->id],'method'=>'POST'])!!}
+                        {!! Form::open(['action'=>['UserController@update',$user->id],'method'=>'POST','enctype'=>'multipart/form-data'])!!}
                           <!-- Tab panes -->
                           <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="info">
@@ -34,19 +34,28 @@
                               </div>
                               <div class="form-group">
                                   <label>Profile picture</label>
-                                  <input type="file" name="Imagen" />
+                                  <!--<input type="file" name="Imagen" />-->
+                                  {{Form::file('photo')}}
                               </div>
                             </div>
 
                             <div role="tabpanel" class="tab-pane" id="location">
                               <div class="form-group">
+                                  
                                   <label>Country</label>
-                                  <select class="form-control">
-                                      <option value="">Select a country</option>
+                                  
+                                  
+                                  <select class="form-control" name="country_id">
+                                      <option value=0>Select a country</option>
                                       @foreach($countries as $country)
-                                      <option value="{{$country->country_name}}">{{$country->country_name}}</option>
+                                    
+                                   
+                                    <option value="{{$country->id}}" {{ ( $user->country_id == $country->id ) ? 'selected' : '' }}>{{$country->country_name}}</option>
+                                    
+
                                       @endforeach
                                   </select>
+                                 
                               </div>
                               <div class="form-group">
                                   <label>City</label>
@@ -65,7 +74,7 @@
                                       <span class="input-group-addon">
                                           <i class="fa fa-facebook"></i>
                                       </span>
-                                      {{Form::text('facebokk',$user->facebook,['class'=>"form-control", 'placeholder'=>"Place your facebook"])}}
+                                      {{Form::text('facebook',$user->facebook,['class'=>"form-control", 'placeholder'=>"Place your facebook"])}}
                                   </div>
                               </div>
                               <div class="form-group">
@@ -90,7 +99,7 @@
                           </div>
 
                         </div>
-                      
+                      {{Form::hidden('_method','PUT')}}
                       <div class="text-right well well-sm">
                           <button type="submit" class="btn btn-primary">Save</button>
                       </div>

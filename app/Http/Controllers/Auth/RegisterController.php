@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/backend/about_me';
+    protected $redirectTo = '/backend/user';
 
     /**
      * Create a new controller instance.
@@ -58,6 +58,7 @@ class RegisterController extends Controller
             'twitter' => 'string|max:255',
             'youtube' => 'string|max:255',
             'city' => 'string|max:255',
+            'country_id' => 'integer',
         ]);
 
     }
@@ -81,6 +82,8 @@ class RegisterController extends Controller
             'twitter' => $data['twitter'],
             'youtube' => $data['youtube'],
             'city' => $data['city'],
+            'country_id' => $data['country_id'],
+            'photo' => $data['photo'],
         ]);
     }
 
