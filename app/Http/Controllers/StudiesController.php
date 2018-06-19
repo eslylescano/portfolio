@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\User;
+use App\Country;
+use App\Experience;
 
 class StudiesController extends Controller
 {
@@ -13,7 +18,9 @@ class StudiesController extends Controller
      */
     public function index()
     {
-        return view('backend.studies.index');
+        $studies = User::find(Auth::id())->studies;
+
+        return view('backend.studies.index',compact('studies'));
     }
 
     /**

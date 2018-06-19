@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\User;
+use App\Country;
+use App\Experience;
 
 class JobsController extends Controller
 {
@@ -13,7 +18,9 @@ class JobsController extends Controller
      */
     public function index()
     {
-        return view('backend.jobs.index');
+        $jobs = User::find(Auth::id())->jobs;
+
+        return view('backend.jobs.index',compact('jobs'));
     }
 
     /**
@@ -23,7 +30,7 @@ class JobsController extends Controller
      */
     public function create()
     {
-        //
+               return view('backend.jobs.create');
     }
 
     /**
@@ -34,7 +41,23 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'name' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
+
+        $job = new Experience;
+        $job->type = 1;
+        $job->user_id = Auth::id();
+        $job->title = $request->title;
+        $job->name = $request->name;
+        $job->from_date = $request->from_date;
+        $job->to_date = $request->to_date;
+        $job->description = $request->description;
+        $job->save();
+        return redirect('backend/jobs')->with('success','Job Created');
     }
 
     /**

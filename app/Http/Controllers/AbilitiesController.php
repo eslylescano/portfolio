@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\User;
+use App\Ability;
 
 class AbilitiesController extends Controller
 {
@@ -13,7 +17,8 @@ class AbilitiesController extends Controller
      */
     public function index()
     {
-        return view('backend.abilities.index');
+        $abilities = User::find(Auth::id())->abilities;
+        return view('backend.abilities.index',compact('abilities'));
     }
 
     /**
