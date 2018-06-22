@@ -29,6 +29,7 @@ class AbilitiesController extends Controller
     public function create()
     {
         //
+               return view('backend.abilities.create');
     }
 
     /**
@@ -40,6 +41,17 @@ class AbilitiesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'name' => 'required',
+            'domain' => 'required',
+        ]);
+
+        $ability = new Ability;
+        $ability->user_id = Auth::id();
+        $ability->name = $request->name;
+        $ability->domain = $request->domain;;
+        $ability->save();
+        return redirect('backend/abilities')->with('success','Ability Created');
     }
 
     /**
@@ -62,6 +74,8 @@ class AbilitiesController extends Controller
     public function edit($id)
     {
         //
+        $ability =  Ability::find($id);
+               return view('backend.abilities.edit',compact('ability'));
     }
 
     /**
@@ -74,6 +88,17 @@ class AbilitiesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'name' => 'required',
+            'domain' => 'required',
+
+        ]);
+
+        $ability = Ability::find($id);
+        $ability->name = $request->name;
+        $ability->domain = $request->domain;
+        $ability->save();
+        return redirect('backend/abilities')->with('success','Ability Updated');
     }
 
     /**
@@ -85,5 +110,8 @@ class AbilitiesController extends Controller
     public function destroy($id)
     {
         //
+        $ability = Ability::find($id);
+        $ability->delete();
+        return redirect('backend/abilities')->with('success','Ability Deleted');
     }
 }

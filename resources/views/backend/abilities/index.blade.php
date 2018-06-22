@@ -2,15 +2,16 @@
                 @extends('layouts.backend.app')
                  @section('content') 
                       <h1 class="page-header remove-margin">
-                          <a class="btn btn-primary pull-right" href="#">Add</a>
+                          <a class="btn btn-primary pull-right" href="{{ URL::to('backend/abilities/create') }}">Add</a>
                           Skills
                       </h1>
-                      
+                      @if(count($abilities)>0)                    
                       <table class="table table-striped table-bordered">
                           <thead>
                               <tr>
                                   <th>Skill</th>
                                   <th>Level</th>
+                                  <th></th>
                               </tr>
                           </thead>
                           <tbody>
@@ -26,35 +27,19 @@
                                       </div>
                                     </div>
                                   </td>
+                                  <td>
+                                      <a class="btn btn-primary" href="{{ URL::to('backend/abilities/'.$ability->id.'/edit/') }}">Edit</a> 
+                                      {!! Form::open(['action'=>['AbilitiesController@destroy',$ability->id],'method'=>'POST','class'=>'pull-right'])!!}
+                                      {{Form::hidden('_method','DELETE')}}
+                                      {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                                      {!! Form::close()!!}
+                                    </td>                                  
                               </tr>
                             @endforeach
-                            <!--
-                              <tr>
-                                  <td>
-                                    <a href="#">PHP</a>
-                                  </td>
-                                  <td>
-                                    <div class="progress">
-                                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%;">
-                                        60%
-                                      </div>
-                                    </div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                    <a href="#">ASP.NET MVC</a>
-                                  </td>
-                                  <td>
-                                    <div class="progress">
-                                      <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%;">
-                                        80%
-                                      </div>
-                                    </div>
-                                  </td>
-                              </tr>
-                          </tbody>
-                          -->
+                          </tbody>                         
                       </table>
+                      @else
+                              <p>No abilities found</p>                      
+                      @endif
                       @endsection
-                  <!--</div>-->
+                 

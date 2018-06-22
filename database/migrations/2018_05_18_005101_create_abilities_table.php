@@ -20,6 +20,18 @@ class CreateAbilitiesTable extends Migration
             $table->integer('domain');
             $table->timestamps();
         });
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'PHP',
+            'domain' => '60'));
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'ASP.NET MVC',
+            'domain' => '80'));            
     }
 
     /**

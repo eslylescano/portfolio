@@ -30,7 +30,7 @@ class StudiesController extends Controller
      */
     public function create()
     {
-        //
+           return view('backend.studies.create');
     }
 
     /**
@@ -41,7 +41,24 @@ class StudiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'name' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'description'=>'required'
+        ]);
+
+        $study = new Experience;
+        $study->type = 2;
+        $study->user_id = Auth::id();
+        $study->title = $request->title;
+        $study->name = $request->name;
+        $study->from_date = $request->from_date;
+        $study->to_date = $request->to_date;
+        $study->description = $request->description;
+        $study->save();
+        return redirect('backend/studies')->with('success','Study Created');
     }
 
     /**
@@ -64,6 +81,8 @@ class StudiesController extends Controller
     public function edit($id)
     {
         //
+        $study =  Experience::find($id);
+               return view('backend.studies.edit',compact('study'));
     }
 
     /**
@@ -76,6 +95,22 @@ class StudiesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'title' => 'required',
+            'name' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'description'=>'required'
+        ]);
+
+        $study = Experience::find($id);
+        $study->title = $request->title;
+        $study->name = $request->name;
+        $study->from_date = $request->from_date;
+        $study->to_date = $request->to_date;
+        $study->description = $request->description;
+        $study->save();
+        return redirect('backend/studies')->with('success','Study Updated');
     }
 
     /**
@@ -87,5 +122,8 @@ class StudiesController extends Controller
     public function destroy($id)
     {
         //
+        $job = Experience::find($id);
+        $job->delete();
+        return redirect('backend/jobs')->with('success','Job Deleted');
     }
 }

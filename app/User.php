@@ -36,5 +36,15 @@ class User extends Authenticatable
 
         public function abilities(){
         return $this->hasMany('App\Ability');
-    }
+        }
+
+        public function testimonies(){
+        return $this->hasMany('App\Testimony');
+        }
+
+        public function country(){
+        return $this->hasOne('App\Country','id','country_id');
+        }
 }
+    
+

@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Eduardo Rodriguez CV Resume</title>
+		<title>{{$user->name}} CV Resume</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
          <link href="{{ asset('css/anexsoft-theme/style.css') }}" rel="stylesheet">
         <!--<link href="assets/css/anexsoft-theme/style.css" type="text/css" rel="stylesheet" />-->
-        <script src="assets/js/jquery.js"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
     </head>
     <body>
 
         <div id="cv-container">
+
             <div id="user">
                 <div class="user-container-fixed">
                     <div class="user-container">
-                        <h1>Eduardo Rodriguez Patiño</h1>
-                        <img class="pic" src="uploads/yo.jpg" title="Eduardo Rodriguez" /> 
-                        <span class="title">Teléfono</span>
-                        <span class="description">+51-999-9999</span>
+                        <h1>{{$user->name}} {{$user->surname}}</h1>
+                        <img class="pic" src="{{asset('storage/photos/'.$user->photo)}}" title="{{$user->name}}" /> 
+                        <span class="title">Phone</span>
+                        <span class="description">{{$user->phone}}</span>
                         <span class="title">Email</span>
-                        <span class="description"><a>erodriguez@anexsoft.com</a></span>
-                        <span class="title">Dirección</span>
-                        <span class="description">Av. Los Informáticos 105<br />Lima / Perú</span>
+                        <span class="description"><a>{{$user->email}}</a></span>
+                        <span class="title">{{$user->address}}</span>
+                        <span class="description">{{$user->description}}<br />{{$user->city}} / {{$user->country->country_name}}</span>
                     </div>
                 </div>
             </div>
@@ -31,13 +32,13 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <a href="#" class="btn btn-danger">
-                                    <i class="fa fa-file-pdf-o"></i> <span class="hidden-xs hidden-sm">Descargar en PDF</span>
+                                    <i class="fa fa-file-pdf-o"></i> <span class="hidden-xs hidden-sm">Download PDF</span>
                                 </a>
                                 <button class="btn btn-primary">
-                                    <i class="fa fa-print"></i> <span class="hidden-xs hidden-sm">Imprimir</span>
+                                    <i class="fa fa-print"></i> <span class="hidden-xs hidden-sm">Print</span>
                                 </button>
                                 <button class="btn btn-default" data-toggle="modal" data-target="#mContacto">
-                                    <i class="fa fa-envelope-o"></i> <span class="hidden-xs hidden-sm">Contactar</span>
+                                    <i class="fa fa-envelope-o"></i> <span class="hidden-xs hidden-sm">Contact</span>
                                 </button>                            
                                 <a title="Facebook" class="btn btn-default"><i class="fa fa-facebook-official"></i></a>
                                 <a title="Twitter" class="btn btn-default"><i class="fa fa-twitter"></i></a>
@@ -49,141 +50,103 @@
                 <div class="content-container container-fluid">
                     <h2 class="title title-blue">
                         <i class="fa fa-briefcase pull-right"></i>
-                        Empleos previos
+                        Previous Jobs
                     </h2>
+
+                    
+                    @foreach($user->jobs as $job)
                     <div class="list well well-sm">
                         <div class="list-heading">
-                            Company Name <small class="list-heading-date">2014-04-02 - ACTUALMENTE</small>
-                            <span class="list-heading-subtitle">ASP.NET MVC Developer</span>
+                            {{$job->name}} <small class="list-heading-date">{{$job->from_date}} - {{$job->to_date}}</small>
+                            <span class="list-heading-subtitle">{{$job->title}}</span>
                         </div>
                         <div class="list-description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>{{$job->description}}</p>
                         </div>
                     </div>
-                    <div class="list well well-sm">
-                        <div class="list-heading">
-                            Company Name <small class="list-heading-date">2013-04-02 - 2014-04-02</small>
-                            <span class="list-heading-subtitle">PHP Developer</span>
-                        </div>
-                        <div class="list-description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </div>
-                    </div>
+                    @endforeach
+
                     
                     <h2 class="title title-yellow">
                         <i class="fa fa-line-chart pull-right"></i>
-                        Habilidades obtenidas
+                        Abilities
                     </h2>
                     <ul class="list-group">
+
+                        @foreach($user->abilities as $ability)
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-lg-2">
-                                    <b>Programación con PHP</b>
+                                    <b>{{$ability->name}}</b>
                                 </div>
                                 <div class="col-lg-10">
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%"></div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{$ability->domain}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$ability->domain}}%"></div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <b>Programación con PHP</b>
-                                </div>
-                                <div class="col-lg-10">
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <b>Programación con PHP</b>
-                                </div>
-                                <div class="col-lg-10">
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <b>Programación con PHP</b>
-                                </div>
-                                <div class="col-lg-10">
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                     
                     <h2 class="title title-green">
                         <i class="fa fa-university pull-right"></i>
-                        Estudios realizados
+                        Studies
                     </h2>
+                    @foreach($user->studies as $study)
                     <div class="list well well-sm">
                         <div class="list-heading">
-                            Idiomas Católica <small class="list-heading-date">2014-04-02 - ACTUALMENTE</small>
-                            <span class="list-heading-subtitle">Ingles técnico</span>
+                            {{$study->name}} <small class="list-heading-date">{{$study->from_date}} - {{$study->to_date}}</small>
+                            <span class="list-heading-subtitle">{{$study->title}}</span>
                         </div>
                     </div>
-                    <div class="list well well-sm">
-                        <div class="list-heading">
-                            iSILTECH <small class="list-heading-date">2014-04-02 - ACTUALMENTE</small>
-                            <span class="list-heading-subtitle">Java Enterprise Developer</span>
-                        </div>
-                    </div>
+                    @endforeach
+
                     
                     <h2 class="title title-red">
                         <i class="fa fa-comment pull-right"></i>
-                        Testimonios
+                        Testimonies
                     </h2>
-                    
+                        {!! Form::open(['action'=>['TestimoniesController@store'],'method'=>'POST'])!!}
+                            @include('layouts.messages')
                     <div class="form-group">
-                        <label>Nombre</label>
-                        <input class="form-control" placeholder="Ingresa tu Nombre" />
+                        <label>Name</label>
+                        {{Form::text('name','',['class'=>"form-control", 'placeholder'=>"Place your name"])}}
                     </div>
                     
                     <div class="form-group">
-                        <label>Testimonio</label>
-                        <textarea class="form-control" placeholder="Ingresa tu testimonio"></textarea>
+                        <label>Testimony</label>
+                        {{Form::textarea('comment','',['class'=>"form-control", 'placeholder'=>"Place your testimony"])}}
                     </div>
-                    
+                    <input type="hidden" name="ip" value="{{$_SERVER['REMOTE_ADDR']}}"/>
+                    <input type="hidden" name="date" value="{{date('d-m-Y')}}"/>
+                    <input type="hidden" name="user_id" value="{{$user->id}}"/>
                     <div class="text-right">
-                        <button class="btn btn-lg btn-primary">
-                            Enviar
+                        <button class="btn btn-lg btn-primary" type="submit">
+                            Send
                         </button>                        
                     </div>
-                    
+                        {!!Form::close()!!}
                     <hr />
 
                     <div class="media">
                         <div class="media-body">
+                        
+                        @foreach($user->testimonies as $testimony)
+                        @if($testimony->state==1)
                             <h4 class="media-heading">
-                                Jose Ramirez <small>Enviado el 2015-04-14</small>
-                            </h4>
+                                {{$testimony->name}} <small>Sent {{$testimony->date}}</small>
                             <div class="well well-sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.                                
+                                {{$testimony->comment}}                                
                             </div>
-                            <h4 class="media-heading">
-                                Jose Ramirez <small>Enviado el 2015-04-14</small>
                             </h4>
-                            <div class="well well-sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.                                
-                            </div>
+                        @endif
+                        @endforeach
                         </div>
                     </div>
                     
                     <footer id="footer">
-                        2015 - Proyecto desarrollado por <a href="http://anexsoft.com">Anexsoft</a>
+                        2018 - Proyect developed by <a href="http://www.eslylescano.com">Esly</a>
                     </footer>
                     
                 </div>
@@ -221,7 +184,7 @@
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
         
-        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
  
 	</body>
 </html>

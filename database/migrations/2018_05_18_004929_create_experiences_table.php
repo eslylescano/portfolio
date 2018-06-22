@@ -24,6 +24,46 @@ class CreateExperiencesTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        DB::table('experiences')->insert(
+        array(
+            'user_id' => '1',
+            'type' => '1',
+            'name' => 'Empresa A',
+            'title' => 'Cargo A',
+            'from_date' => '2015-02-02',
+            'to_date' => '2015-05-02',
+            'description' => '')); 
+
+        DB::table('experiences')->insert(
+        array(
+            'user_id' => '1',
+            'type' => '1',
+            'name' => 'Empresa B',
+            'title' => 'Cargo B',
+            'from_date' => '2015-02-02',
+            'to_date' => '2015-05-02',
+            'description' => ''));    
+
+        DB::table('experiences')->insert(
+        array(
+            'user_id' => '1',
+            'type' => '2',
+            'name' => 'Empresa A',
+            'title' => 'Centro A',
+            'from_date' => '2015-02-02',
+            'to_date' => '2015-05-02',
+            'description' => '')); 
+
+        DB::table('experiences')->insert(
+        array(
+            'user_id' => '1',
+            'type' => '2',
+            'name' => 'Empresa B',
+            'title' => 'Centro B',
+            'from_date' => '2015-02-02',
+            'to_date' => '2015-05-02',
+            'description' => ''));                 
     }
 
     /**

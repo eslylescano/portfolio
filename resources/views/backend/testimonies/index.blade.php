@@ -1,55 +1,60 @@
-                  <!--<div id="testimonies" class="page">-->
+
                  @extends('layouts.backend.app')
                  @section('content')                      
                       <h1 class="page-header remove-margin">
-                          Testimonios
+                          Testimonies
                       </h1>
-                      
+                      @if(count($testimonies)>0) 
                       <table class="table table-striped table-bordered">
                           <thead>
                               <tr>
-                                  <th>Nombre</th>
-                                  <th>Estado</th>
+                                  <th>Name</th>
+                                  <th>State</th>
                                   <th>IP</th>
-                                  <th>Fecha</th>
-                                  <th style="width:400px;">Comentario</th>
+                                  <th>Date</th>
+                                  <th style="width:400px;">Comment</th>
                               </tr>
                           </thead>
                           <tbody>
+
+                              @foreach($testimonies as $testimony)
                               <tr>
                                   <td>
-                                    <a href="#">Juan Paredes</a>
+                                    <a href="#">{{$testimony->name}}</a>
                                   </td>
                                   <td>
-                                      <b class="text-warning">Pendiente</b>
+                                    @switch($testimony->state)
+                                        @case(1)
+                                            <b class="text-success">Approved</b>
+                                            @break
+
+                                        @case(2)
+                                            <b class="text-warning">Pending</b>
+                                            @break
+
+                                        @case(3)
+                                           <b class="text-danger">Rejected</b>
+                                            @break
+                                    @endswitch
+
+                                      
                                   </td>
-                                  <td>192.168.1.54</td>
-                                  <td>2015-02-02</td>
-                                  <td>Excelente profesional, definitivamente es una gran persona y muy empeñoso en su trabajo.</td>
+                                  <td>{{$testimony->ip}}</td>
+                                  <td>{{$testimony->date}}</td>
+                                  <td>{{$testimony->comment}}</td>
+                                  <td>
+                                      <a class="btn btn-primary" href="{{ URL::to('backend/testimonies/'.$testimony->id.'/edit/') }}">Edit</a> 
+                                      {!! Form::open(['action'=>['TestimoniesController@destroy',$testimony->id],'method'=>'POST','class'=>'pull-right'])!!}
+                                      {{Form::hidden('_method','DELETE')}}
+                                      {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                                      {!! Form::close()!!}
+                                    </td>                                    
                               </tr>
-                              <tr>
-                                  <td>
-                                    <a href="#">Jose Andrade</a>
-                                  </td>
-                                  <td>
-                                      <b class="text-success">Aprobado</b>
-                                  </td>
-                                  <td>192.168.1.5</td>
-                                  <td>2015-02-02</td>
-                                  <td>Eduardo es una persona muy profesional, se nota que sabe del tema y estoy muy contento con los cursos que ha realizado.</td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                    <a href="#">Bravo Maloi</a>
-                                  </td>
-                                  <td>
-                                      <b class="text-danger">Rechazado</b>
-                                  </td>
-                                  <td>192.168.1.32</td>
-                                  <td>2015-02-02</td>
-                                  <td>Curso de $&/$&#!$!"#$%#&@@ ....</td>
-                              </tr>
+
+                             @endforeach
                           </tbody>
                       </table>
+                              @else
+                              <p>No testimonies found</p>
+                              @endif                      
                       @endsection
-                  <!--</div>-->

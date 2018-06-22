@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\User;
-use App\Country;
 use App\Experience;
 
 class JobsController extends Controller
@@ -46,6 +45,7 @@ class JobsController extends Controller
             'name' => 'required',
             'from_date' => 'required',
             'to_date' => 'required',
+            'description'=>'required'
         ]);
 
         $job = new Experience;
@@ -77,10 +77,15 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function edit($id)
     {
         //
+        $job =  Experience::find($id);
+               return view('backend.jobs.edit',compact('job'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -92,6 +97,22 @@ class JobsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'title' => 'required',
+            'name' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'description'=>'required'
+        ]);
+
+        $job = Experience::find($id);
+        $job->title = $request->title;
+        $job->name = $request->name;
+        $job->from_date = $request->from_date;
+        $job->to_date = $request->to_date;
+        $job->description = $request->description;
+        $job->save();
+        return redirect('backend/jobs')->with('success','Job Updated');
     }
 
     /**
@@ -103,5 +124,8 @@ class JobsController extends Controller
     public function destroy($id)
     {
         //
+        $job = Experience::find($id);
+        $job->delete();
+        return redirect('backend/jobs')->with('success','Job Deleted');
     }
 }

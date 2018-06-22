@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\User;
+use App\Testimony;
 
 class TestimoniesController extends Controller
 {
@@ -13,7 +17,8 @@ class TestimoniesController extends Controller
      */
     public function index()
     {
-        return view('backend.testimonies.index');
+        $testimonies = User::find(Auth::id())->testimonies;
+        return view('backend.testimonies.index',compact('testimonies'));
     }
 
     /**
@@ -34,7 +39,28 @@ class TestimoniesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'comment' => 'required',
+        ]);
+/*
+            $table->integer('user_id');
+            $table->integer('state');
+            $table->string('ip');
+            $table->string('name');
+            $table->string('comment');
+            $table->string('date');
+            */
+        $testimony = new Testimony;
+        $testimony->user_id = $request->user_id;
+        $testimony->state = 1;
+        $testimony->ip = $request->ip;
+        $testimony->name = $request->name;
+        $testimony->comment = $request->comment;
+        $testimony->date = $request->date;
+        $testimony->save();
+        return redirect('/')->with('success','Testimony Created, waiting to accepted');;
+
     }
 
     /**
@@ -56,7 +82,8 @@ class TestimoniesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $testimony =  Testimony::find($id);
+               return view('backend.testimonies.edit',compact('testimony'));
     }
 
     /**
@@ -69,6 +96,14 @@ class TestimoniesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'state' => 'required',
+        ]);
+
+        $testimony = Testimony::find($id);
+        $testimony->state = $request->state;
+        $testimony->save();
+        return redirect('backend/testimonies')->with('success','Testimony Updated');
     }
 
     /**
@@ -80,5 +115,8 @@ class TestimoniesController extends Controller
     public function destroy($id)
     {
         //
+        $testimony = Testimony::find($id);
+        $testimony->delete();
+        return redirect('backend/testimonies')->with('success','Testimony Deleted');
     }
 }

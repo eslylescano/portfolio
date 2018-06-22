@@ -1,4 +1,4 @@
-                  <!--<div id="experience" class="page">-->
+
                  @extends('layouts.backend.app')
                  @section('content') 
                       <h1 class="page-header remove-margin">
@@ -6,6 +6,7 @@
                           Previous Jobs
                       </h1>
                       
+                      @if(count($jobs)>0)
                       <table class="table table-striped table-bordered">
                           <thead>
                               <tr>
@@ -13,6 +14,7 @@
                                   <th>Role</th>
                                   <th>From</th>
                                   <th>To</th>
+                                  <th></th>
                               </tr>
                           </thead>
                           <tbody>
@@ -24,29 +26,22 @@
                                   <td>{{$job->title}}</td>
                                   <td>{{$job->from_date}}</td>
                                   <td>{{$job->to_date}}</td>
+                                  <td>
+                                      <a class="btn btn-primary" href="{{ URL::to('backend/jobs/'.$job->id.'/edit/') }}">Edit</a> 
+                                      {!! Form::open(['action'=>['JobsController@destroy',$job->id],'method'=>'POST','class'=>'pull-right'])!!}
+                                      {{Form::hidden('_method','DELETE')}}
+                                      {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                                      {!! Form::close()!!}
+                                    </td>
+
                             </tr>
                               @endforeach
 
-<!--
-                              <tr>
-                                  <td>
-                                    <a href="#">Empresa A</a>
-                                  </td>
-                                  <td>Cargo A</td>
-                                  <td>2015-02-02</td>
-                                  <td>2015-05-02</td>
-                              </tr>
 
-                              <tr>
-                                  <td>
-                                    <a href="#">Empresa B</a>
-                                  </td>
-                                  <td>Cargo B</td>
-                                  <td>2015-02-02</td>
-                                  <td>2015-05-02</td>
-                              </tr>
-                              -->
+
                           </tbody>
                       </table>
+                              @else
+                              <p>No jobs found</p>
+                              @endif                     
                       @endsection
-                 <!-- </div>-->

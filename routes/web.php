@@ -11,12 +11,14 @@
 |
 */
 
-Route::view('/', 'frontend.index');
+Route::get('/', 'FrontEndController@index');
 Route::view('/backend', 'backend.index');
+
+
 
 Route::group(['middleware'=>'auth'],function(){
 Route::group(['prefix' => 'backend'], function() {
-    Route::auth();
+    
     Route::resource('user','UserController');
     Route::resource('jobs','JobsController');
     Route::resource('studies','StudiesController');
@@ -24,14 +26,9 @@ Route::group(['prefix' => 'backend'], function() {
     Route::resource('testimonies','TestimoniesController');
 });
 });
+
 Auth::routes();
 
 
-/*
-Route::name('backend.')->group(function () {
-    Route::auth();
-    Route::resource('user','UserController');
-});
-*/
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/welcome', 'welcome');
