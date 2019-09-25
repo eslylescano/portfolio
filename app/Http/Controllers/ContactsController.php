@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\User;
-use App\Ability;
+use App\Contact;
 
-class AbilitiesController extends Controller
+class ContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,9 @@ class AbilitiesController extends Controller
      */
     public function index()
     {
-        $abilities = User::find(Auth::id())->abilities;
-        return view('admin.abilities.index',compact('abilities'));
+        $contacts = User::find(Auth::id())->contacts;
+
+        return view('admin.contacts.index',compact('contacts'));
     }
 
     /**
@@ -29,7 +30,6 @@ class AbilitiesController extends Controller
     public function create()
     {
         //
-               return view('admin.abilities.create');
     }
 
     /**
@@ -40,18 +40,19 @@ class AbilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request,[
             'name' => 'required',
-            'domain' => 'required',
+            'email' => 'required',
+            'message' => 'required'
         ]);
 
-        $ability = new Ability;
-        $ability->user_id = Auth::id();
-        $ability->name = $request->name;
-        $ability->domain = $request->domain;;
-        $ability->save();
-        return redirect('admin/abilities')->with('success','Ability Created');
+        $contact = new Contact;
+        $contact->user_id = $request->user_id;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->message = $request->message;;
+        $contact->save();
+        return redirect('/')->with('success','Message Sent');
     }
 
     /**
@@ -74,8 +75,6 @@ class AbilitiesController extends Controller
     public function edit($id)
     {
         //
-        $ability =  Ability::find($id);
-               return view('admin.abilities.edit',compact('ability'));
     }
 
     /**
@@ -88,17 +87,6 @@ class AbilitiesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,[
-            'name' => 'required',
-            'domain' => 'required',
-
-        ]);
-
-        $ability = Ability::find($id);
-        $ability->name = $request->name;
-        $ability->domain = $request->domain;
-        $ability->save();
-        return redirect('admin/abilities')->with('success','Ability Updated');
     }
 
     /**
@@ -109,9 +97,8 @@ class AbilitiesController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $ability = Ability::find($id);
-        $ability->delete();
-        return redirect('admin/abilities')->with('success','Ability Deleted');
+        $contact = Contact::find($id);
+        $contact->delete();
+        return redirect('admin/contacts')->with('success','Contact Deleted');
     }
 }

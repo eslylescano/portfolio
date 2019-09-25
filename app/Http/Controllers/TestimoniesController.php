@@ -18,7 +18,7 @@ class TestimoniesController extends Controller
     public function index()
     {
         $testimonies = User::find(Auth::id())->testimonies;
-        return view('backend.testimonies.index',compact('testimonies'));
+        return view('admin.testimonies.index',compact('testimonies'));
     }
 
     /**
@@ -83,7 +83,7 @@ class TestimoniesController extends Controller
     public function edit($id)
     {
         $testimony =  Testimony::find($id);
-               return view('backend.testimonies.edit',compact('testimony'));
+               return view('admin.testimonies.edit',compact('testimony'));
     }
 
     /**
@@ -103,7 +103,7 @@ class TestimoniesController extends Controller
         $testimony = Testimony::find($id);
         $testimony->state = $request->state;
         $testimony->save();
-        return redirect('backend/testimonies')->with('success','Testimony Updated');
+        return redirect('admin/testimonies')->with('success','Testimony Updated');
     }
 
     /**
@@ -117,6 +117,6 @@ class TestimoniesController extends Controller
         //
         $testimony = Testimony::find($id);
         $testimony->delete();
-        return redirect('backend/testimonies')->with('success','Testimony Deleted');
+        return redirect('admin/testimonies')->with('success','Testimony Deleted');
     }
 }

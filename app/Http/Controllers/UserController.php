@@ -22,7 +22,7 @@ class UserController extends Controller
 
         
         //return view('backend.pages.about_me')->with('user',$user);
-        return view('backend.user.index',compact('user','countries'));
+        return view('admin.user.index',compact('user','countries'));
     }
 
     /**
@@ -123,7 +123,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('backend/user')->with('success','User Updated');
+        return redirect('admin/user')->with('success','User Updated');
 
     }
 

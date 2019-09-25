@@ -45,6 +45,10 @@ class User extends Authenticatable
         public function country(){
         return $this->hasOne('App\Country','id','country_id');
         }
+
+        public function contacts(){
+        return $this->hasMany('App\Contact');
+        }
 }
     
 

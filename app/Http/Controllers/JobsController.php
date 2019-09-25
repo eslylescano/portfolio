@@ -19,7 +19,7 @@ class JobsController extends Controller
     {
         $jobs = User::find(Auth::id())->jobs;
 
-        return view('backend.jobs.index',compact('jobs'));
+        return view('admin.jobs.index',compact('jobs'));
     }
 
     /**
@@ -29,7 +29,7 @@ class JobsController extends Controller
      */
     public function create()
     {
-               return view('backend.jobs.create');
+               return view('admin.jobs.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class JobsController extends Controller
         $job->to_date = $request->to_date;
         $job->description = $request->description;
         $job->save();
-        return redirect('backend/jobs')->with('success','Job Created');
+        return redirect('admin/jobs')->with('success','Job Created');
     }
 
     /**
@@ -82,7 +82,7 @@ class JobsController extends Controller
     {
         //
         $job =  Experience::find($id);
-               return view('backend.jobs.edit',compact('job'));
+               return view('admin.jobs.edit',compact('job'));
     }
 
 
@@ -112,7 +112,7 @@ class JobsController extends Controller
         $job->to_date = $request->to_date;
         $job->description = $request->description;
         $job->save();
-        return redirect('backend/jobs')->with('success','Job Updated');
+        return redirect('admin/jobs')->with('success','Job Updated');
     }
 
     /**
@@ -126,6 +126,6 @@ class JobsController extends Controller
         //
         $job = Experience::find($id);
         $job->delete();
-        return redirect('backend/jobs')->with('success','Job Deleted');
+        return redirect('admin/jobs')->with('success','Job Deleted');
     }
 }

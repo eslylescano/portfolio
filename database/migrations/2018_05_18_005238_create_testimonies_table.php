@@ -25,7 +25,7 @@ class CreateTestimoniesTable extends Migration
         });
 
 
-
+/*
         DB::table('testimonies')->insert(
         array(
             'user_id' => '1',
@@ -51,7 +51,7 @@ class CreateTestimoniesTable extends Migration
             'ip' => '192.168.1.5',
             'name' => 'Bravo Maloi',
             'comment' => 'Curso de $&/$&#!$!"#$%#&@@ ....',
-            'date' => '2015-02-02'));   
+            'date' => '2015-02-02')); */  
     }
 
     /**

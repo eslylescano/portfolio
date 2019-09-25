@@ -24,14 +24,50 @@ class CreateAbilitiesTable extends Migration
         DB::table('abilities')->insert(
         array(
             'user_id' => '1',
-            'name' => 'PHP',
+            'name' => 'Laravel',
             'domain' => '60'));
 
         DB::table('abilities')->insert(
         array(
             'user_id' => '1',
             'name' => 'ASP.NET MVC',
-            'domain' => '80'));            
+            'domain' => '50'));   
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'Android',
+            'domain' => '70'));     
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'IOS',
+            'domain' => '20'));   
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'SQL',
+            'domain' => '70'));  
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'HTML5 CSS3',
+            'domain' => '70'));  
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'BootStrap',
+            'domain' => '60')); 
+
+        DB::table('abilities')->insert(
+        array(
+            'user_id' => '1',
+            'name' => 'Java',
+            'domain' => '70')); 
     }
 
     /**

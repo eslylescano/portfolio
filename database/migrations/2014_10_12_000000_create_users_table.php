@@ -41,7 +41,7 @@ class CreateUsersTable extends Migration
             'password' => '$2y$10$HVujfEBBVS9pPO2yeXVJYu3pcZMLe8JFRmu2wMGsmvV6aQYrp7Clu',
             'address' => '11 Crag View Staveley',
             'phone' => '07463360235',
-            'facebook' => '',
+            'facebook' => 'https://www.facebook.com/esly.lescano',
             'twitter' => '',
             'youtube' => '',
             'city' => 'Kendal',

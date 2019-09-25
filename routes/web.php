@@ -12,23 +12,24 @@
 */
 
 Route::get('/', 'FrontEndController@index');
-Route::view('/backend', 'backend.index');
+Route::view('/admin', 'admin.index');
 
 
 
-Route::group(['middleware'=>'auth'],function(){
-Route::group(['prefix' => 'backend'], function() {
-    
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::group(['middleware'=>'auth'],function(){ 
     Route::resource('user','UserController');
     Route::resource('jobs','JobsController');
     Route::resource('studies','StudiesController');
     Route::resource('abilities','AbilitiesController');
-    Route::resource('testimonies','TestimoniesController');
+
+    Route::resource('contacts','ContactsController');
 });
+Route::resource('testimonies','TestimoniesController');
 });
 
 Auth::routes();
-
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/welcome', 'welcome');

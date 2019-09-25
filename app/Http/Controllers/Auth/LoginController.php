@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/backend/user/';
+    protected $redirectTo = '/admin/user';
 
     /**
      * Create a new controller instance.
@@ -38,11 +38,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-        protected function logout(Request $request)
+    protected function logout(Request $request)
     {
         $this->guard()->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-        return redirect('/backend/');
+        return redirect('/');
     }
 }

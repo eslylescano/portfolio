@@ -5,18 +5,17 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
          <link href="{{ asset('css/anexsoft-theme/style.css') }}" rel="stylesheet">
-        <!--<link href="assets/css/anexsoft-theme/style.css" type="text/css" rel="stylesheet" />-->
         <script src="{{ asset('js/jquery.js') }}"></script>
     </head>
     <body>
-
+        
         <div id="cv-container">
-
+            
             <div id="user">
                 <div class="user-container-fixed">
                     <div class="user-container">
                         <h1>{{$user->name}} {{$user->surname}}</h1>
-                        <img class="pic" src="{{asset('storage/photos/'.$user->photo)}}" title="{{$user->name}}" /> 
+                        <img class="pic" src="{{asset('storage/photos/'.$user->photo)}}" title="{{$user->name}}" />
                         <span class="title">Phone</span>
                         <span class="description">{{$user->phone}}</span>
                         <span class="title">Email</span>
@@ -27,22 +26,24 @@
                 </div>
             </div>
             <div id="content">
+                    @include('layouts.messages')
                 <div class="options-container-fixed">
                     <div class="options">
                         <div class="row">
                             <div class="col-sm-12">
+                                    <!--
                                 <a href="#" class="btn btn-danger">
                                     <i class="fa fa-file-pdf-o"></i> <span class="hidden-xs hidden-sm">Download PDF</span>
-                                </a>
-                                <button class="btn btn-primary">
+                                </a>-->
+                                <button class="btn btn-primary" onclick="javascript:window.print();">
                                     <i class="fa fa-print"></i> <span class="hidden-xs hidden-sm">Print</span>
                                 </button>
-                                <button class="btn btn-default" data-toggle="modal" data-target="#mContacto">
+                                <!--<button class="btn btn-default" data-toggle="modal" data-target="#mContacto">
                                     <i class="fa fa-envelope-o"></i> <span class="hidden-xs hidden-sm">Contact</span>
-                                </button>                            
-                                <a title="Facebook" class="btn btn-default"><i class="fa fa-facebook-official"></i></a>
-                                <a title="Twitter" class="btn btn-default"><i class="fa fa-twitter"></i></a>
-                                <a title="Youtube" class="btn btn-default"><i class="fa fa-youtube"></i></a>
+                                </button>                            -->
+                                <a title="Facebook" class="btn btn-default" href="{{$user->facebook}}"><i class="fa fa-facebook-official"></i></a>
+                                <a title="Twitter" class="btn btn-default" href="{{$user->twitter}}"><i class="fa fa-twitter"></i></a>
+                                <a title="Youtube" class="btn btn-default" href="{{$user->youtube}}"><i class="fa fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>                    
@@ -108,7 +109,7 @@
                         Testimonies
                     </h2>
                         {!! Form::open(['action'=>['TestimoniesController@store'],'method'=>'POST'])!!}
-                            @include('layouts.messages')
+
                     <div class="form-group">
                         <label>Name</label>
                         {{Form::text('name','',['class'=>"form-control", 'placeholder'=>"Place your name"])}}
@@ -155,36 +156,44 @@
         
         
         <!-- Modal -->
+
+
         <div id="mContacto" class="modal fade">
           <div class="modal-dialog">
             <div class="modal-content">
+
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Contactar</h4>
+                <h4 class="modal-title">Contact</h4>
               </div>
               <div class="modal-body">
+        {!! Form::open(['action'=>['ContactsController@store'],'method'=>'POST'])!!}
+        {{csrf_field()}}
                   <div class="form-group">
-                      <label>Nombre</label>
-                      <input type="text" class="form-control" placeholder="Su nombre completo" />
+                      <label>Name</label>
+                        {{Form::text('name','',['class'=>"form-control", 'placeholder'=>"Place your full name"])}}
                   </div>
                   <div class="form-group">
-                      <label>Correo</label>
-                      <input type="text" class="form-control" placeholder="Su nombre completo" />
+                      <label>Email</label>
+                        {{Form::text('email','',['class'=>"form-control", 'placeholder'=>"Place your email"])}}
                   </div>
                   <div class="form-group">
-                      <label>Mensaje</label>
-                      <textarea class="form-control" placeholder="Su nombre completo"></textarea>
+                      <label>Message</label>
+                        {{Form::textarea('message','',['class'=>"form-control", 'placeholder'=>"Place your message"])}}
                   </div>
+                    <input type="hidden" name="user_id" value="{{$user->id}}"/>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-lg">Enviar</button>
+                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >Cancel</button>
+                <button type="button" class="btn btn-primary btn-lg" data-ajax="true" type="submit" id="btnSend">Send</button>
               </div>
+                {!!Form::close()!!}        
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
         
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
- 
+
 	</body>
 </html>

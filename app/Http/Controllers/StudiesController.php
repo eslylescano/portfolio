@@ -20,7 +20,7 @@ class StudiesController extends Controller
     {
         $studies = User::find(Auth::id())->studies;
 
-        return view('backend.studies.index',compact('studies'));
+        return view('admin.studies.index',compact('studies'));
     }
 
     /**
@@ -30,7 +30,7 @@ class StudiesController extends Controller
      */
     public function create()
     {
-           return view('backend.studies.create');
+           return view('admin.studies.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class StudiesController extends Controller
         $study->to_date = $request->to_date;
         $study->description = $request->description;
         $study->save();
-        return redirect('backend/studies')->with('success','Study Created');
+        return redirect('admin/studies')->with('success','Study Created');
     }
 
     /**
@@ -82,7 +82,7 @@ class StudiesController extends Controller
     {
         //
         $study =  Experience::find($id);
-               return view('backend.studies.edit',compact('study'));
+               return view('admin.studies.edit',compact('study'));
     }
 
     /**
@@ -110,7 +110,7 @@ class StudiesController extends Controller
         $study->to_date = $request->to_date;
         $study->description = $request->description;
         $study->save();
-        return redirect('backend/studies')->with('success','Study Updated');
+        return redirect('admin/studies')->with('success','Study Updated');
     }
 
     /**
@@ -122,8 +122,8 @@ class StudiesController extends Controller
     public function destroy($id)
     {
         //
-        $job = Experience::find($id);
-        $job->delete();
-        return redirect('backend/jobs')->with('success','Job Deleted');
+        $study = Experience::find($id);
+        $study->delete();
+        return redirect('admin/studies')->with('success','Study Deleted');
     }
 }
