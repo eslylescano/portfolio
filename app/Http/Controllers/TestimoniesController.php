@@ -53,7 +53,7 @@ class TestimoniesController extends Controller
             */
         $testimony = new Testimony;
         $testimony->user_id = $request->user_id;
-        $testimony->state = 1;
+        $testimony->state = 2;
         $testimony->ip = $request->ip;
         $testimony->name = $request->name;
         $testimony->comment = $request->comment;
